@@ -20,7 +20,7 @@
       ],
       "program": "lib/main.dart",
       "cwd": "${workspaceFolder}",
-      // "flutterMode": "debug",
+      "flutterMode": "debug",
       "flutterPlatform": "default",
       "env": {
         "MY_VAR": "MY_VALUE",
