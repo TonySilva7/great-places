@@ -7,7 +7,7 @@ class Place {
   final PlaceLocation? location;
   final File image;
 
-  Place({
+  const Place({
     required this.id,
     required this.title,
     required this.location,

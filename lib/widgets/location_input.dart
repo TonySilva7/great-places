@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:great_places/utils/location_utils.dart';
 import 'package:location/location.dart';
+
+import '../screens/map_screen.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput({super.key});
@@ -31,6 +34,19 @@ class _LocationInputState extends State<LocationInput> {
     // setState(() {
     //   previewImageUrl = staticMapImageUrl;
     // });
+  }
+
+  Future<void> _selectOnMap() async {
+    final LatLng? selectedPosition = await Navigator.of(context).push<LatLng>(MaterialPageRoute(
+      builder: (context) => const MapScreen(),
+      fullscreenDialog: true,
+    ));
+
+    if (selectedPosition == null) {
+      return;
+    }
+
+    print(selectedPosition.latitude);
   }
 
   @override
@@ -67,7 +83,7 @@ class _LocationInputState extends State<LocationInput> {
               ),
             ),
             TextButton.icon(
-              onPressed: () {},
+              onPressed: _selectOnMap,
               icon: const Icon(Icons.map),
               label: const Text('Selecionar no mapa'),
               style: TextButton.styleFrom(
