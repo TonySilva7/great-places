@@ -1,5 +1,36 @@
 # great_places
 
+
+### Para rodar esse projeto:
+- Crie um pasta `.vscode`
+- Crie um arquivo `launch.json`
+- Cole o código abaixo e substitua por suas variáves de ambiente:
+```json
+{
+  "configurations": [
+    {
+      "name": "Flutter",
+      "request": "launch",
+      "type": "dart",
+      "toolArgs": [
+        "--dart-define",
+        "GOOGLE_MAPS_API_KEY=MY_API_KEY",
+        "--dart-define",
+        "GOOGLE_MAPS_STATIC_API_URL=MY_API_MAPS_URL",
+      ],
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      // "flutterMode": "debug",
+      "flutterPlatform": "default",
+      "env": {
+        "MY_VAR": "MY_VALUE",
+        "MY_OTHER_VAR": "MY_OTHER_VALUE"
+      }
+    }
+  ]
+}
+```
+---
 A new Flutter project.
 
 ## Getting Started
