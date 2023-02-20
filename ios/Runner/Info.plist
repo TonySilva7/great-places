@@ -11,7 +11,6 @@
 		<array>
 			<string>location</string>
 		</array>
-		<!--  -->
 		<!-- Image Picker -->
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER) precisa acessar sua galeria de fotos para selecionar fotos.</string>
@@ -19,6 +18,9 @@
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER) precisa acessar sua câmera para tirar fotos.</string>
 		<key>NSMicrophoneUsageDescription</key>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER) precisa acessar seu microfone para gravar áudios.</string>
+		<!-- Torna possível acessar as varáveis em launch.json para acessar em AppDelegate -->
+		<key>DART_DEFINES</key>
+		<string>$(DART_DEFINES)</string>
 		<!--  -->
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>

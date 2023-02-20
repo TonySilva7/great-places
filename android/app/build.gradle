@@ -64,7 +64,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         // Arrary criado para setar a variável do launch.json no AndroidManifest.xml com a chave 'API_KEY'
-        manifestPlaceholders.putAll([API_KEY: dartEnvironmentVariables.GOOGLE_MAPS_API_KEY])
+        manifestPlaceholders.putAll([GOOGLE_MAPS_API_KEY: dartEnvironmentVariables.GOOGLE_MAPS_API_KEY])
     }
 
     buildTypes {
