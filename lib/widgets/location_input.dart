@@ -16,25 +16,44 @@ class LocationInput extends StatefulWidget {
 class _LocationInputState extends State<LocationInput> {
   String? previewImageUrl;
 
-  Future<void> _getCurrentUserLocation() async {
-    final locData = await Location().getLocation();
-
+  void _showPreview(double lat, double lng) {
     final staticMapImageUrl = LocationUtils.generateLocationPreviewImage(
-      latitude: locData.latitude ?? 0,
-      longitude: locData.longitude ?? 0,
+      latitude: lat,
+      longitude: lng,
     );
 
     setState(() {
       previewImageUrl = staticMapImageUrl;
     });
+  }
 
-    // final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
-    //   latitude: locData.latitude,
-    //   longitude: locData.longitude,
-    // );
-    // setState(() {
-    //   previewImageUrl = staticMapImageUrl;
-    // });
+  Future<void> _getCurrentUserLocation() async {
+    // lance um erro qualquer
+
+    try {
+      final locData = await Location().getLocation();
+
+      _showPreview(locData.latitude ?? 0, locData.longitude ?? 0);
+      widget.onSelectedLocation(LatLng(locData.latitude ?? 0, locData.longitude ?? 0));
+
+      throw Exception('Erro ao pegar a localização');
+    } on Exception catch (e) {
+      print("Erro ao pegar a localização: $e");
+      // mostrar modal para usuário solicitando a permissão
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Erro'),
+          content: const Text('Precisamos da sua localização para adicionar às fotos.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   Future<void> _selectOnMap() async {
@@ -47,14 +66,7 @@ class _LocationInputState extends State<LocationInput> {
       return;
     }
 
-    final staticMapImageUrl = LocationUtils.generateLocationPreviewImage(
-      latitude: selectedPosition.latitude,
-      longitude: selectedPosition.longitude,
-    );
-
-    setState(() {
-      previewImageUrl = staticMapImageUrl;
-    });
+    _showPreview(selectedPosition.latitude, selectedPosition.longitude);
 
     widget.onSelectedLocation(selectedPosition);
   }
