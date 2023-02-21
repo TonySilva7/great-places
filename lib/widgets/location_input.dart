@@ -35,8 +35,6 @@ class _LocationInputState extends State<LocationInput> {
 
       _showPreview(locData.latitude ?? 0, locData.longitude ?? 0);
       widget.onSelectedLocation(LatLng(locData.latitude ?? 0, locData.longitude ?? 0));
-
-      throw Exception('Erro ao pegar a localização');
     } on Exception catch (e) {
       print("Erro ao pegar a localização: $e");
       // mostrar modal para usuário solicitando a permissão
