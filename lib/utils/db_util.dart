@@ -9,7 +9,7 @@ class DbUtil {
       path.join(dbPath, 'places.db'),
       // função que executa quando o banco é criado pela primeira vez
       onCreate: (db, version) => db.execute(
-        'CREATE TABLE places (id TEXT PRIMARY KEY, title TEXT, image TEXT)',
+        'CREATE TABLE places (id TEXT PRIMARY KEY, title TEXT, image TEXT, lat REAL, lng REAL, address TEXT)',
       ),
       version: 1,
     );
